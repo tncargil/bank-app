@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
- 
+import { useSession } from '../UserSession';
+
 const Balance = () => {
     const [balance, setBalance] = useState('...');
+    const { accountNumber } = useSession();
 
     useEffect(() => {
       fetch('http://localhost:3001/data')
         .then(response => response.json())
         .then(data => {
-            console.dir("data:"+data);
-            if (data.length > 0) {
-                setBalance(data[0].amount); 
-            }
-            else {
-                setBalance(0); 
+            const accountData = data.find(item => item.account_number === parseInt(accountNumber));
+            if (accountData) {
+              setBalance(accountData.amount);
+            } else {
+              setBalance(0);
             }
         })
         .catch(error => {
