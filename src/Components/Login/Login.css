@@ -61,12 +61,43 @@
     font-size: 19px;
 }
 
+.button-container{
+    display: flex;
+    gap: 30px;
+    margin: 60px auto;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color: #FFF;
+    background-color: #00b792;
+    /* border-radius: 50px; */
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.switch-account{
+    padding-left: 62px;
+    margin-top: 20px;
+    color: #797979;
+    font-size: 17px;
+}
+
+.switch-account span{
+    color: #00b792;
+    cursor: pointer;
+}
 .submit-container{
     display: flex;
     gap: 30px;
     margin: 60px auto;
 }
- 
+
 .submit{
     display: flex;
     justify-content: center;

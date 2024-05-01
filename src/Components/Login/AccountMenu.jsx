@@ -1,35 +1,30 @@
 import React, { useState } from "react";
-import "./Login.css";
 import { useNavigate  } from "react-router-dom";
 import person_icon from '../Assets/person.png';
 
-const Login = () => {
+const AccountMenu = () => {
     const [action, setAction] = useState("Submit");
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        navigate("/account");
+        navigate("/transaction");
+     };
+    const checkingPressed = () => {
+         navigate("/transaction");
     };
-
     return (
         <div className='container'>
             <div className='header'>
-                <div className='text'>Welcome to Banky</div>
+                <div className='text'>Choose Your Account</div>
                 <div className='underline'></div>
             </div>
-            <div className='inputs'>
-                <div className='input'>
-                    <img src={person_icon} alt=''/>
-                    <input type='text' placeholder="Please Enter Account Number"/>
-                </div>
-            </div>
-            <div className="submit-container">
+            <div className="button-container">
             {/* <Link to="/welcome" className={action==="Submit" ? "submit gray" : "submit"} onClick={handleSubmit}>Look up account</Link> */}
-                <div className={action==="Submit" ? "submit gray" : "submit"} onClick={handleSubmit}>Look up account</div>
+                <div className={action==="Checking" ? "submit gray" : "button"} onClick={handleSubmit}>Checking</div>
             </div>
+            <div className="switch-account">Need to switch acounts? <span>Click Here!</span></div>
         </div>
     );
 };
 
-export default Login;
-
+export default AccountMenu ;
