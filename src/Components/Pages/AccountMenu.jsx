@@ -18,7 +18,7 @@ const AccountMenu = () => {
                 <div className='text'>Choose Your Account</div>
                 <div className='underline'></div>
             </div>
-            <div className="button-container">
+            <div className="button-container1">
             {/* <Link to="/welcome" className={action==="Submit" ? "submit gray" : "submit"} onClick={handleSubmit}>Look up account</Link> */}
                 <div className={action==="Checking" ? "submit gray" : "button"} onClick={handleSubmit}>Checking</div>
             </div>

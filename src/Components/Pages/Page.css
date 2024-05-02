@@ -61,10 +61,16 @@
     font-size: 19px;
 }
 
-.button-container{
+.button-container1{
     display: flex;
     gap: 30px;
-    margin: 60px auto;
+    margin: 30px auto;
+}
+
+.button-container2{
+    display: flex;
+    gap: 30px;
+    margin: 30px auto;
 }
 
 .button{

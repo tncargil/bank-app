@@ -7,8 +7,8 @@ const Withdraw = () => {
     const handleSubmit = () => {
         // navigate("/withdraw");
     };
-    const checkingPressed = () => {
-        // navigate("/withdraw");
+    const deposit = () => {
+        navigate("/deposit");
     };
     const checkBalance = () => {
         navigate("/balance");
@@ -19,10 +19,13 @@ const Withdraw = () => {
                 <div className='text'>How can I help you?</div>
                 <div className='underline'></div>
             </div>
-            <div className="button-container">
+            <div className="button-container2">
                 <div className={action==="Checking" ? "submit gray" : "button"} onClick={handleSubmit}>Withdraw</div>
             </div>
-             <div className="button-container">
+            <div className="button-container2">
+                <div className={action==="Checking" ? "submit gray" : "button"} onClick={deposit}>Deposit</div>
+            </div>
+             <div className="button-container1">
                 <div className={action==="Checking" ? "submit gray" : "button"} onClick={checkBalance}>Check Balance</div>
             </div>
             <div className="switch-account">Need to switch acounts? <span>Click Here!</span></div>
