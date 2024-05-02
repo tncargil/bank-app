@@ -18,7 +18,7 @@ const Balance = () => {
         })
         .catch(error => {
             console.error('Error:', error);
-            setBalance('Error retrieving data');
+            setBalance('Error');
         });
     }, []);
     
@@ -26,7 +26,6 @@ const Balance = () => {
         <div className='container'>
             <div className='header'>
                 <div className='text'>Your balance is: ${balance}</div>
-                <div className='underline'></div>
             </div>
             <div className="switch-account">Need to switch accounts? <span>Click Here!</span></div>
         </div>

@@ -59,6 +59,15 @@
     outline: none;
     color: #797979;
     font-size: 19px;
+    text-align: center;
+    text-indent: -70px; 
+}
+
+.input input::placeholder {
+    text-align: center;
+    color: #797979; 
+    font-size: 19px; 
+    text-indent: -70px; 
 }
 
 .button-container1{
