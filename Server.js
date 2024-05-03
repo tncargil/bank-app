@@ -17,7 +17,7 @@ app.use(cors());
 
 app.get('/data', async (req, res) => {
   try {
-    const data = await pool.query('SELECT account_number, name, amount FROM accounts ORDER BY account_number');
+    const data = await pool.query('SELECT account_number, name, amount, type, credit_limit FROM accounts ORDER BY account_number');
     res.json(data.rows);
   } catch (err) {
     console.error(err);
@@ -25,14 +25,14 @@ app.get('/data', async (req, res) => {
   }
 });
 
-app.use(bodyParser.json()); // Ensure Express can parse JSON request bodies
+app.use(bodyParser.json()); 
 
 app.post('/update-account', async (req, res) => {
   const { accountNumber, amount } = req.body;
   try {
     const updateQuery = 'UPDATE accounts SET amount = amount + $1 WHERE account_number = $2';
     const results = await pool.query(updateQuery, [amount, accountNumber]);
-    if (results.rowCount > 0) { // rowCount will be the number of rows affected
+    if (results.rowCount > 0) { 
       res.send(`Account ${accountNumber} updated successfully.`);
     } else {
       res.status(404).send('Account not found.');

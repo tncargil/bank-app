@@ -5,12 +5,11 @@ import { useSession } from "../UserSession";
 import person_icon from '../Assets/person.png';
 
 const Login = () => {
-    const [action, setAction] = useState("Submit");
-    const navigate = useNavigate();
+     const navigate = useNavigate();
     const { setAccountNumber } = useSession();
 
     const handleSubmit = () => {
-        navigate("/account");
+            navigate("/transaction");
     };
 
     const handleAccountNumberChange = (e) => {
@@ -33,7 +32,7 @@ const Login = () => {
                     />                </div>
             </div>
             <div className="submit-container">
-                <div className={action==="Submit" ? "submit gray" : "submit"} onClick={handleSubmit}>Look up account</div>
+                <div className="submit" onClick={handleSubmit}>Look up account</div>
             </div>
         </div>
     );

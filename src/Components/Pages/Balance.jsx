@@ -21,7 +21,7 @@ const Balance = () => {
             setBalance('Error');
         });
     }, []);
-    
+        
     return (
         <div className='container'>
             <div className='header'>

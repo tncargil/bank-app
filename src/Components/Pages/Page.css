@@ -60,14 +60,14 @@
     color: #797979;
     font-size: 19px;
     text-align: center;
-    text-indent: -70px; 
+    text-indent: -80px; 
 }
 
 .input input::placeholder {
     text-align: center;
     color: #797979; 
     font-size: 19px; 
-    text-indent: -70px; 
+    text-indent: -80px; 
 }
 
 .button-container1{

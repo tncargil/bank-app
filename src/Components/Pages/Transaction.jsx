@@ -3,14 +3,13 @@ import { useNavigate  } from "react-router-dom";
 
 const Withdraw = () => {
     const navigate = useNavigate();
-    const [action, setAction] = useState("Submit");
-    const handleSubmit = () => {
-        // navigate("/withdraw");
+    const clickWithdraw = () => {
+        navigate("/withdraw");
     };
-    const deposit = () => {
+    const clickDeposit = () => {
         navigate("/deposit");
     };
-    const checkBalance = () => {
+    const clickCheckBalance = () => {
         navigate("/balance");
     };
     return (
@@ -20,13 +19,13 @@ const Withdraw = () => {
                 <div className='underline'></div>
             </div>
             <div className="button-container2">
-                <div className={action==="Checking" ? "submit gray" : "button"} onClick={handleSubmit}>Withdraw</div>
+                <div className="button" onClick={clickWithdraw}>Withdraw</div>
             </div>
             <div className="button-container2">
-                <div className={action==="Checking" ? "submit gray" : "button"} onClick={deposit}>Deposit</div>
+                <div className="button" onClick={clickDeposit}>Deposit</div>
             </div>
              <div className="button-container1">
-                <div className={action==="Checking" ? "submit gray" : "button"} onClick={checkBalance}>Check Balance</div>
+                <div className="button" onClick={clickCheckBalance}>Check Balance</div>
             </div>
             <div className="switch-account">Need to switch acounts? <span>Click Here!</span></div>
         </div>

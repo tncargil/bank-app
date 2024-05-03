@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { useSession } from '../UserSession';
 import dollar_icon from '../Assets/dollar.png';
 
-const Deposit = () => {
+const Withdraw = () => {
     const [depositAmount, setDepositAmount] = useState('');
+    const [action, setAction] = useState("Submit");
     const { accountNumber } = useSession();
+    const [withdrawAmount, setWithdrawAmount] = useState('');
 
     const handleInputChange = (event) => {
         setDepositAmount(event.target.value);
     };
 
-    const handleDeposit = async () => {
+    const handleWithdraw = async () => {
         if (!depositAmount) {
             alert('Please enter an amount');
             return;
@@ -23,18 +25,31 @@ const Deposit = () => {
             return;
         }
     
-        if (parsedAmount > 1000) {
-            alert('Can not deposit more than $1000 in a single transaction');
+        if (parsedAmount > 200) {
+            alert('Can not withdraw more than $200 in a single transaction');
             return;
         }
+
+        if (parsedAmount%5 != 0) {
+            alert('Can not withdraw multiples less then $5');
+            return;
+        }
+
+        // if (withdrawAmount + parsedAmount > 400) {
+        //     alert('Can not withdraw more then $400 a day');
+        //     return;
+        // }
     
         try {
             const response = await fetch('http://localhost:3001/data');
             const data = await response.json();
             const accountData = data.find(item => item.account_number === parseInt(accountNumber));
         
-            if (accountData.type === 'credit' && parsedAmount > -accountData.amount) {
-                alert('Cannot deposit more than credit limit');
+            if (accountData.type !== 'credit' && parsedAmount > accountData.amount) {
+                alert('Cannot withdraw more then what is in your acount');
+                return;
+            } else if(accountData.amount - parsedAmount < -accountData.credit_limit) {
+                alert('Cannot withdraw more then your credit limit');
                 return;
             }
     
@@ -43,14 +58,14 @@ const Deposit = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ accountNumber, amount: parsedAmount }),
+                body: JSON.stringify({ accountNumber, amount: -parsedAmount }),
             });
-    
-             alert('Deposit successful');
+             setWithdrawAmount(parsedAmount + withdrawAmount);
+             alert('Withdraw Successful');
     
         } catch (error) {
             console.error('Error:', error);
-            alert('Error making a deposit');
+            alert('Error making a Withdraw');
         }
     
         setDepositAmount(''); 
@@ -59,7 +74,7 @@ const Deposit = () => {
     return (
         <div className='container'>
             <div className='header'>
-                <div className='text'>Deposit</div>
+                <div className='text'>Withdraw</div>
                 <div className='underline'></div>
             </div>
             <div className='inputs'>
@@ -67,18 +82,18 @@ const Deposit = () => {
                     <img src={dollar_icon} alt=''/>
                     <input 
                         type='text' 
-                        placeholder="Enter Deposit Amount"
+                        placeholder="Enter Withdraw Amount"
                         value={depositAmount}
                         onChange={handleInputChange}
                     />               
                  </div>
             </div>
             <div className="submit-container">
-                <div className="submit" onClick={handleDeposit}>Deposit</div>
+                <div className="submit" onClick={handleWithdraw}>Withdraw</div>
             </div>
         </div>
     );
 };
 
-export default Deposit;
+export default Withdraw;
 
