@@ -39,7 +39,7 @@ const Login = () => {
     return (
         <div className='container'>
             <div className='header'>
-                <div className='text'>Welcome to Banky</div>
+                <div className='text'>Barebones Bank</div>
                 <div className='underline'></div>
             </div>
             <div className='inputs'>

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useSession } from '../UserSession';
+import { useNavigate  } from "react-router-dom";
 import dollar_icon from '../Assets/dollar.png';
 
 const Deposit = () => {
     const [depositAmount, setDepositAmount] = useState('');
+    const navigate = useNavigate();
     const { accountNumber } = useSession();
 
     const handleInputChange = (event) => {
@@ -56,6 +58,10 @@ const Deposit = () => {
         setDepositAmount(''); 
     };
 
+    const clickSwitchAccounts = () => {
+        navigate("/");
+    };
+
     return (
         <div className='container'>
             <div className='header'>
@@ -76,6 +82,7 @@ const Deposit = () => {
             <div className="submit-container">
                 <div className="submit" onClick={handleDeposit}>Deposit</div>
             </div>
+            <div className="switch-account">Need to switch acounts? <span onClick={clickSwitchAccounts}>Click Here!</span></div>
         </div>
     );
 };

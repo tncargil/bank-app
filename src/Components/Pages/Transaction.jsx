@@ -12,6 +12,10 @@ const Withdraw = () => {
     const clickCheckBalance = () => {
         navigate("/balance");
     };
+    const clickSwitchAccounts = () => {
+        navigate("/");
+    };
+
     return (
         <div className='container'>
             <div className='header'>
@@ -27,7 +31,7 @@ const Withdraw = () => {
              <div className="button-container1">
                 <div className="button" onClick={clickCheckBalance}>Check Balance</div>
             </div>
-            <div className="switch-account">Need to switch acounts? <span>Click Here!</span></div>
+            <div className="switch-account">Need to switch acounts? <span onClick={clickSwitchAccounts}>Click Here!</span></div>
         </div>
     );
 };

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useSession } from '../UserSession';
+import { useNavigate  } from "react-router-dom";
 import dollar_icon from '../Assets/dollar.png';
+
 
 const Withdraw = () => {
     const [depositAmount, setDepositAmount] = useState('');
+    const navigate = useNavigate();
     const [action, setAction] = useState("Submit");
     const { accountNumber } = useSession();
-    const [withdrawAmount, setWithdrawAmount] = useState('');
 
     const handleInputChange = (event) => {
         setDepositAmount(event.target.value);
@@ -34,17 +36,28 @@ const Withdraw = () => {
             alert('Can not withdraw multiples less then $5');
             return;
         }
-
-        // if (withdrawAmount + parsedAmount > 400) {
-        //     alert('Can not withdraw more then $400 a day');
-        //     return;
-        // }
     
         try {
             const response = await fetch('http://localhost:3001/data');
             const data = await response.json();
             const accountData = data.find(item => item.account_number === parseInt(accountNumber));
-        
+
+            const dailyWithdrawn = accountData.daily_withdrawn == null ? 0 : parseInt(accountData.daily_withdrawn.split('|')[0]);
+           
+            const date = new Date();
+
+            const mm = String(date.getMonth() + 1).padStart(2, '0'); 
+            const dd = String(date.getDate()).padStart(2, '0');
+            const yyyy = date.getFullYear();
+            const todaysDate = `${mm}${dd}${yyyy}`;
+
+            const newDailyWithdrawn = `${parsedAmount + dailyWithdrawn}|${todaysDate}`;
+
+            if ((dailyWithdrawn + parsedAmount) > 400 && accountData.daily_withdrawn.split('|')[1] == todaysDate) {
+                alert('Can not withdraw more then $400 a day'+(dailyWithdrawn + parsedAmount));
+                return;
+            }
+
             if (accountData.type !== 'credit' && parsedAmount > accountData.amount) {
                 alert('Cannot withdraw more then what is in your acount');
                 return;
@@ -52,16 +65,15 @@ const Withdraw = () => {
                 alert('Cannot withdraw more then your credit limit');
                 return;
             }
-    
-            const updateResponse = await fetch('http://localhost:3001/update-account', {
+
+            const updateResponse = await fetch('http://localhost:3001/withdraw-account', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ accountNumber, amount: -parsedAmount }),
+                body: JSON.stringify({ accountNumber, amount: -parsedAmount, dailyWithdrawn: newDailyWithdrawn }),
             });
-             setWithdrawAmount(parsedAmount + withdrawAmount);
-             alert('Withdraw Successful');
+             alert('Withdraw Successful'+newDailyWithdrawn);
     
         } catch (error) {
             console.error('Error:', error);
@@ -69,6 +81,10 @@ const Withdraw = () => {
         }
     
         setDepositAmount(''); 
+    };
+
+    const clickSwitchAccounts = () => {
+        navigate("/");
     };
 
     return (
@@ -91,6 +107,7 @@ const Withdraw = () => {
             <div className="submit-container">
                 <div className="submit" onClick={handleWithdraw}>Withdraw</div>
             </div>
+            <div className="switch-account">Need to switch acounts? <span onClick={clickSwitchAccounts}>Click Here!</span></div>
         </div>
     );
 };
