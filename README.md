@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+Hello! Welcome to the Advisor's Excel coding challenge. The goal of this exercise is to give us an idea of how you write code, and to see your communication style. When you complete the challenge, our team will review your code and if accepted, we will meet for an interview in which we will discuss your work and review with you.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We do ask that you complete this project in Javascript/Typescript, though you may use any frameworks, libraries, or packages you would like.
 
-## Available Scripts
+### Prerequisites
+- [Docker](https://www.docker.com/products/docker-desktop/)
 
-In the project directory, you can run:
+First, make sure you have docker installed and that you have it running, then run the `docker-compose up -d` command in the root directory of this project. A database will spin up when running this command. To modify what is added to that database upon initialization, check the `init-db.sql` file. For credentials to connect to the database, take a look at the included .env file. Make sure you can connect to the database, and reach out if you need help.
 
-### `npm start`
+### The Challenge
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+You are being asked to create software for an atm at a bank. At this atm, the bank’s customers should be able to:
+- Make Withdrawals
+- Make Deposits
+- Check Balance
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In order to access these options, the customer needs to enter their bank account number. Their bank account number can correspond to one of several account types (Checking, Savings, Credit).
 
-### `npm test`
+All of these values should persist in the provided database.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+There are a couple rules behind these three actions.
 
-### `npm run build`
+#### Making Withdrawals
+When making a withdrawal, the following rules apply.
+- A customer can withdraw no more than $200 in a single transaction.
+- A customer can withdraw no more than $400 in a single day. 
+- A customer can withdraw any amount that can be dispensed in $5 bills.
+- The customer cannot withdraw more than they have in their account, unless it is a credit account, in which case they cannot withdraw more than their credit limit.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Making Deposits
+When making a deposit, the following rules apply.
+- A customer cannot deposit more than $1000 in a single transaction.
+- If this is a credit account, the customer cannot deposit more in their account than is needed to 0 out the account.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Checking Balance
+The customer should be output their balance when selecting this option.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Wrapping Up
+Once you have completed the project, we ask that you take some time to answer the questions in the included `wrap-up.md` file.
 
-### `npm run eject`
+### Submitting the Project
+Please create a public Github repo and use that while you work on this project. Once completed, send michael.hartung@advisorsexcel.com a link to the public repo, and our team will review.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Evaluation Process
+When evaluating this project, we will first start up the database in a docker container and ensure we can connect to that database via the credentials in the .env file. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+We will then follow the instructions you provide on how to run this project. Please ensure your project is runnable, as we will not consider a project we aren’t able to get running.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+After testing the project and reviewing code, we will discuss internally, and if your project is accepted, we will reach out to schedule the first interview, which involves a code review of your project.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Questions
+If you have any questions while working on this project, feel free to reach out to michael.hartung@advisorsexcel.com and i'll get back to you within a day.
