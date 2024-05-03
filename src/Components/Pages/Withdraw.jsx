@@ -73,7 +73,7 @@ const Withdraw = () => {
                 },
                 body: JSON.stringify({ accountNumber, amount: -parsedAmount, dailyWithdrawn: newDailyWithdrawn }),
             });
-             alert('Withdraw Successful'+newDailyWithdrawn);
+             alert('Withdraw Successful');
     
         } catch (error) {
             console.error('Error:', error);
