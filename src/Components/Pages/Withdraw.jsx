@@ -54,7 +54,7 @@ const Withdraw = () => {
             const newDailyWithdrawn = `${parsedAmount + dailyWithdrawn}|${todaysDate}`;
 
             if ((dailyWithdrawn + parsedAmount) > 400 && accountData.daily_withdrawn.split('|')[1] == todaysDate) {
-                alert('Can not withdraw more then $400 a day'+(dailyWithdrawn + parsedAmount));
+                alert('Can not withdraw more then $400 a day');
                 return;
             }
 
