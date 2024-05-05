@@ -3,7 +3,7 @@
 ### Please provide instructions on how to run your project in a bulleted list below.
 Clone repo: https://github.com/tncargil/bank-app
 Download the latest version of node.js https://nodejs.org/en/download
-Open Up visual studio and in the termanal window run 'docker-compose up -d'
+Open up visual studio and in the terminal window run 'docker-compose up -d'
 Install dotenv: 'npm install dotenv'
 Open up a seperate terminal window and
 cd into the path of this project /bank-app
